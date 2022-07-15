@@ -37,7 +37,7 @@ class MainController extends AbstractController
 
         $beat = new Beat();
 
-        $form = $this->createForm(CurrentBeatType::class,$beat);
+        $form = $this->createForm(CurrentBeatType::class,$beat,['attr'=>['autocomplete'=>'off']]);
 
 
 

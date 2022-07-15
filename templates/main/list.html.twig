@@ -5,14 +5,16 @@
 
 {% block body %}
 	<h1>List</h1>
-	<ul class="list-unstyled">
+	<ul id="bpm-list" class="list-unstyled container-fluid  justify-content-evenly d-flex align-items-start flex-wrap">
 		{% for beat in beats |sort %}
         <a class="text-decoration-none btn btn-success" href="{{path("app_show",{beat:beat.currentBeat})}}">
 			<li>{{beat.currentBeat}}</li>
         </a>
 		{% endfor %}
 	</ul>
-
+	<div class="container d-flex justify-content-center">
     <a href="{{path("app_create")}}" class="btn btn-primary">ADD</a>
+	</div>
+
 
 {% endblock %}

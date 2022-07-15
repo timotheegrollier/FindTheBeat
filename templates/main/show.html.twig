@@ -1,0 +1,176 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{beat.currentBeat}}
+{% endblock %}
+
+{% block body %}
+<table class="table table-dark">
+
+<tbody>
+<tr>
+<th>{{beat.currentBeat - 20}}</th>
+<td>{{beat.M20}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 19}}</th>
+<td>{{beat.M19}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 18}}</th>
+<td>{{beat.M18}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 17}}</th>
+<td>{{beat.M17}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 16}}</th>
+<td>{{beat.M16}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 15}}</th>
+<td>{{beat.M15}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 14}}</th>
+<td>{{beat.M14}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 13}}</th>
+<td>{{beat.M13}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 12}}</th>
+<td>{{beat.M12}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 11}}</th>
+<td>{{beat.M11}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 10}}</th>
+<td>{{beat.M10}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 9}}</th>
+<td>{{beat.M9}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 8}}</th>
+<td>{{beat.M8}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 7}}</th>
+<td>{{beat.M7}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 6}}</th>
+<td>{{beat.M6}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 5}}</th>
+<td>{{beat.M5}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 4}}</th>
+<td>{{beat.M4}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 3}}</th>
+<td>{{beat.M3}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 2}}</th>
+<td>{{beat.M2}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat - 1}}</th>
+<td>{{beat.M1}}</td>
+</tr>
+<tr id="show-current-beat">
+<th>{{beat.currentBeat}}</th>
+<td >{{beat.currentBeat}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 1}}</th>
+<td>{{beat.P1}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 2}}</th>
+<td>{{beat.P2}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 3}}</th>
+<td>{{beat.P3}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 4}}</th>
+<td>{{beat.P4}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 5}}</th>
+<td>{{beat.P5}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 6}}</th>
+<td>{{beat.P6}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 7}}</th>
+<td>{{beat.P7}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 8}}</th>
+<td>{{beat.P8}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 9}}</th>
+<td>{{beat.P9}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 10}}</th>
+<td>{{beat.P10}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 11}}</th>
+<td>{{beat.P11}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 12}}</th>
+<td>{{beat.P12}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 13}}</th>
+<td>{{beat.P13}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 14}}</th>
+<td>{{beat.P14}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 15}}</th>
+<td>{{beat.P15}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 16}}</th>
+<td>{{beat.P16}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 17}}</th>
+<td>{{beat.P17}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 18}}</th>
+<td>{{beat.P18}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 19}}</th>
+<td>{{beat.P19}}</td>
+</tr>
+<tr>
+<th>{{beat.currentBeat + 20}}</th>
+<td>{{beat.P20}}</td>
+</tr>
+</tbody>
+</table>
+<a href="{{path("app_home")}}" class="col-12 btn-danger btn">Back</a>
+{% endblock %}

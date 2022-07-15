@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{beat.currentBeat}}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+{{form_start(form,{attr:{novalidate:'novalidate'}})}}
+{{form_widget(form)}}
+		<div class="col-12 d-flex justify-content-around">
+		<input type="submit" value="Set" class="btn btn-success col-6">
+		<a href="{{path('app_home')}}" class="btn btn-danger col-6">Back</a>
+		</div>
+{{form_end(form)}}
+</div>
+
+{% endblock %}

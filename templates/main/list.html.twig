@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List
+{% endblock %}
+
+{% block body %}
+	<h1>List</h1>
+	<ul class="list-unstyled">
+		{% for beat in beats |sort %}
+        <a class="text-decoration-none btn btn-success" href="{{path("app_show",{beat:beat.currentBeat})}}">
+			<li>{{beat.currentBeat}}</li>
+        </a>
+		{% endfor %}
+	</ul>
+
+    <a href="{{path("app_create")}}" class="btn btn-primary">ADD</a>
+
+{% endblock %}

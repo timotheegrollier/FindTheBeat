@@ -1,0 +1,27 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: black;
+}
+
+h1{
+    color: rgb(36,204,68);
+    text-align: center;
+}
+
+label{
+    width: 100%;
+    text-align: center;
+    color: rgb(36,204,68);
+}
+
+th{
+    color: rgb(36,204,68);
+}
+
+#show-current-beat{
+    td,th{
+    background: #7c7c31!important;
+
+    }
+}

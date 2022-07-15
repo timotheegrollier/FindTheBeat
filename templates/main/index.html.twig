@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Beat!
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid d-flex justify-content-center">
+		{{form_start(form)}}
+		{{form_widget(form)}}
+		<div class="d-flex justify-content-around flex-column align-items-center h-75">
+		<input class="btn btn-primary col-6" type="submit" value="Set">
+		<a href="{{path('app_home')}}" class="btn btn-danger col-6">Back</a>
+		</div>
+		{{form_end(form)}}
+		</div>
+	{% endblock %}

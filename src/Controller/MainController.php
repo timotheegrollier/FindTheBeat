@@ -19,8 +19,15 @@ class MainController extends AbstractController
     #[Route("/",name:"app_home")]
     public function list(BeatRepository $beatRepository): Response
     {
-        $beats = $beatRepository->findAll();
 
+        // Redirect for SHFIFOUMI
+
+        if ($_SERVER['SERVER_NAME'] == "shifoumi.tk" ){
+            return $this->redirect("http://shifoumi.tk:90",302);
+        }
+
+
+        $beats = $beatRepository->findAll();
 
 
         return $this->render('main/list.html.twig',compact('beats'));

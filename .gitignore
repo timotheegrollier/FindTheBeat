@@ -27,7 +27,5 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 ###> Others ###
-deploy.sh
-upload_data.sh
 findthe.key
 ###< Others ###

@@ -29,6 +29,5 @@ yarn-error.log
 ###> Others ###
 deploy.sh
 upload_data.sh
-download_data.sh
 findthe.key
 ###< Others ###

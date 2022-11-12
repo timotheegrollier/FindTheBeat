@@ -15,6 +15,7 @@ class CurrentBeatType extends AbstractType
     {
         $builder
             ->add('currentBeat',NumberType::class)
+            ->setAction("/create")
         ;
     }
 

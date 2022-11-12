@@ -15,62 +15,61 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
-    
-    #[Route("/",name:"app_home")]
+
+    #[Route("/", name: "app_home")]
     public function list(BeatRepository $beatRepository): Response
     {
-
-        // Redirect for SHFIFOUMI
-
-        if ($_SERVER['SERVER_NAME'] == "shifoumi.tk" ){
-            return $this->redirect("http://shifoumi.tk:90",302);
-        }
 
 
         $beats = $beatRepository->findAll();
 
 
-        return $this->render('main/list.html.twig',compact('beats'));
-
-
+        return $this->render('main/list.html.twig', compact('beats'));
     }
 
 
 
 
     #[Route('/create', name: 'app_create')]
-    public function index(Request $request, EntityManagerInterface $em,BeatRepository $beatRepository): Response
+    public function index(Request $request, EntityManagerInterface $em, BeatRepository $beatRepository): Response
     {
 
         $beat = new Beat();
 
-        $form = $this->createForm(CurrentBeatType::class,$beat,['attr'=>['autocomplete'=>'off']]);
+        $form = $this->createForm(CurrentBeatType::class, $beat, ['attr' => ['autocomplete' => 'off']]);
+
+        $error = "";
 
 
 
         $form->handleRequest($request);
 
-
-
-        if($form->isSubmitted() && $form->isValid()){
-        $alreadyIn = $beatRepository->findOneBy(['currentBeat'=>$form->get('currentBeat')->getData()]);
-
-        if($alreadyIn){
-            return $this->redirectToRoute('app_edit',['beat'=>$alreadyIn->getId()]);
-        }
-
-           $beat->setId($form->get('currentBeat')->getData());
-
-            $em->persist($beat);
-            $em->flush();
-
-            return $this->redirect('/' . $beat->getId() . '/edit',302);
-
-
+        if($request->query->get('error')){
+            $error = "Please type a beat !";
         }
 
 
-        return $this->render('main/index.html.twig',['form'=>$form->createView()]);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('currentBeat')->getData() != "") {
+                $alreadyIn = $beatRepository->findOneBy(['currentBeat' => $form->get('currentBeat')->getData()]);
+
+                if ($alreadyIn) {
+                    return $this->redirectToRoute('app_edit', ['beat' => $alreadyIn->getId()]);
+                }
+
+                $beat->setId($form->get('currentBeat')->getData());
+
+                $em->persist($beat);
+                $em->flush();
+
+                return $this->redirect('/' . $beat->getId() . '/edit', 302);
+            }else{
+                return $this->redirectToRoute('app_create',['error' => 1]);
+            }
+        }
+
+
+        return $this->renderForm('main/index.html.twig', ['form' => $form,'error'=>$error]);
     }
 
 
@@ -78,14 +77,14 @@ class MainController extends AbstractController
 
 
 
-    #[Route("/{beat}/edit",name:"app_edit")]
-    public function edit(Beat $beat,EntityManagerInterface $entityManagerInterface, Request $request): Response
+    #[Route("/{beat}/edit", name: "app_edit")]
+    public function edit(Beat $beat, EntityManagerInterface $entityManagerInterface, Request $request): Response
     {
 
-        
+
         $currentBeat = $beat->getCurrentBeat();
         $beat->setCurrentBeat($currentBeat);
-        $form = $this->createForm(PitchType::class,$beat,['attr'=>['autocomplete'=>'off']]);
+        $form = $this->createForm(PitchType::class, $beat, ['attr' => ['autocomplete' => 'off']]);
         $form->get('currentBeat')->setData($currentBeat);
 
 
@@ -93,11 +92,11 @@ class MainController extends AbstractController
 
 
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
-            
+
             $beat->setCurrentBeat($currentBeat);
-            
+
             $beat->setM1($form->getData()->getP1());
             $beat->setM2($form->getData()->getP2());
             $beat->setM3($form->getData()->getP3());
@@ -122,23 +121,21 @@ class MainController extends AbstractController
             $entityManagerInterface->flush();
 
 
-            return $this->redirectToRoute('app_home',['beat'=>$beat]);
+            return $this->redirectToRoute('app_home', ['beat' => $beat]);
         }
-        
-        
-        
-        
-        
-        return $this->render('main/edit.html.twig',['beat'=>$beat,'form'=>$form->createView(),"current"=>$currentBeat]);
-        
-        
+
+
+
+
+
+        return $this->render('main/edit.html.twig', ['beat' => $beat, 'form' => $form->createView(), "current" => $currentBeat]);
     }
 
 
-    #[Route("/{beat}/show",name:"app_show")]
+    #[Route("/{beat}/show", name: "app_show")]
     public function show(Beat $beat): Response
     {
-        
-        return $this->render('main/show.html.twig', ['beat'=>$beat]);
+
+        return $this->render('main/show.html.twig', ['beat' => $beat]);
     }
 }

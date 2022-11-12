@@ -4,13 +4,35 @@
 {% endblock %}
 
 {% block body %}
+		{% if error %}
+			<p id="no-beat-error" class="text-center text-danger">{{error}}</p>
+		{% endif %}
 	<div class="container-fluid d-flex justify-content-center">
 		{{form_start(form)}}
 		{{form_widget(form)}}
 		<div class="d-flex justify-content-around flex-column align-items-center h-75">
-		<input class="btn btn-primary col-6" type="submit" value="Set">
-		<a href="{{path('app_home')}}" class="btn btn-danger col-6">Back</a>
+			<input formnovalidate class="btn btn-primary col-6" type="submit" value="Set">
+			<a href="{{path('app_home')}}" class="btn btn-danger col-6">Back</a>
 		</div>
 		{{form_end(form)}}
-		</div>
-	{% endblock %}
+
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="./jquery.js"></script>
+	<script>
+		if ($('#no-beat-error')) {
+setTimeout(() => {
+$('#no-beat-error').remove()
+}, 2000)
+}
+
+if($('.invalid-feedback')){
+	setTimeout(() => {
+$('.invalid-feedback').remove()
+$('#current_beat_currentBeat').removeClass('is-invalid')
+}, 2000)
+}
+	</script>
+{% endblock %}

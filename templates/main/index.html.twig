@@ -5,7 +5,7 @@
 
 {% block body %}
 		{% if error %}
-
+			<p id="no-beat-error" class="text-center text-danger">{{error}}</p>
 		{% endif %}
 	<div class="container-fluid d-flex justify-content-center">
 		{{form_start(form)}}
@@ -18,6 +18,3 @@
 
 	</div>
 {% endblock %}
-
-
-

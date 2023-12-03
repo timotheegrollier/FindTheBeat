@@ -1,1 +1,1 @@
-scp -i findthe.key ./var/data.db ubuntu@132.226.201.169:/var/www/findthebeat/var/
+scp ./var/data.db find-the-beat@ssh-find-the-beat.alwaysdata.net:www/FindTheBeat/var/

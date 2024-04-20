@@ -21,8 +21,7 @@ RUN apt-get update && apt-get install -y \
 RUN npm install -g n && n lts
     
     
-ADD conf/custom.ini /usr/local/etc/php/conf.d/custom.ini
-
+    
     
     # Add custom.ini to overwrite php.ini for configure PHP
     
@@ -33,11 +32,9 @@ ADD conf/custom.ini /usr/local/etc/php/conf.d/custom.ini
     
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
     
-WORKDIR /var/www/findthebeat/
-
-RUN chmod -R 775 .
-
-ADD app/public app/assets app/bin app/config app/src app/templates app/package.json  app/composer.json  ./
+WORKDIR /var/www/findthebeat
+ADD public src assets bin config src templates package.json package-lock.json composer.json ./
     
-RUN composer update && composer install
 RUN npm update && npm install --force && npm run build
+
+RUN composer update && composer install

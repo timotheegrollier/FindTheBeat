@@ -7,8 +7,6 @@ services:
       - 80:80
     networks:
       - server
-    volumes_from:
-      - phpfpm:rw
 
   phpfpm:
     build:
@@ -18,12 +16,6 @@ services:
       - 9000
     networks:
       - server
-    volumes:
-      - ./app:/var/www/findthebeat
-      - /var/www/findthebeat/nodes_modules
-      - /var/www/findthebeat/vendor
-      - /var/www/findthebeat/var
-
 
 
 networks:

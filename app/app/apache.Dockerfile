@@ -14,9 +14,7 @@ COPY ./conf/findthebeat.conf /etc/apache2/sites-available/findthebeat.conf
 
 WORKDIR /var/www/findthebeat
 
-RUN chmod -R 775 .
-
-
+ADD public src assets bin config src templates package.json package-lock.json ./
 
 
 RUN a2ensite findthebeat

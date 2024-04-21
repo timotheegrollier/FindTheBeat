@@ -2,20 +2,9 @@ services:
   server:
     build:
       context: .
-      dockerfile: apache.Dockerfile
+      dockerfile: Dockerfile
     ports:
       - 80:80
-    networks:
-      - server
-    volumes_from:
-      - phpfpm:rw
-
-  phpfpm:
-    build:
-      context: .
-      dockerfile: php.Dockerfile
-    expose:
-      - 9000
     networks:
       - server
     volumes:

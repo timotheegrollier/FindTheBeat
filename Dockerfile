@@ -1,20 +1,21 @@
 
-FROM php:8-fpm
+FROM php:8.3-apache
 
 
 
+RUN apt-get update -qq && \
+    apt-get install -qy \
+    git \
+    gnupg \
+    unzip \
+    zip npm && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install php && ext
+# PHP Extensions
+RUN docker-php-ext-install -j$(nproc) opcache pdo_mysql
 
-RUN apt-get update && apt-get install -y \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libpng-dev \
-        zip unzip \
-        zlib1g-dev libicu-dev g++ npm \
-    && docker-php-ext-install pdo_mysql \
-    && docker-php-ext-install intl \
-    && docker-php-ext-install opcache
+RUN a2enmod rewrite remoteip
 
 
 
@@ -23,11 +24,16 @@ RUN npm install -g n && n lts
     
 ADD conf/custom.ini /usr/local/etc/php/conf.d/custom.ini
 
+COPY ./conf/findthebeat.conf /etc/apache2/sites-available/findthebeat.conf
+
+
     
     # Add custom.ini to overwrite php.ini for configure PHP
     
     
     # ADD conf/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
+
+ENV COMPOSER_ALLOW_SUPERUSER=1
     
     
     
@@ -41,3 +47,11 @@ ADD app/public app/assets app/bin app/config app/src app/templates app/package.j
     
 RUN composer update && composer install
 RUN npm update && npm install --force && npm run build
+
+
+RUN a2ensite findthebeat
+RUN a2dissite 000-default
+
+EXPOSE 80
+
+

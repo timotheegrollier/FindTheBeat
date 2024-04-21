@@ -15,7 +15,7 @@ RUN apt-get update -qq && \
 # PHP Extensions
 RUN docker-php-ext-install -j$(nproc) opcache pdo_mysql
 
-RUN a2enmod rewrite remoteip
+RUN a2enmod rewrite
 
 
 

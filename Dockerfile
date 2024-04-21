@@ -43,7 +43,7 @@ WORKDIR /var/www/findthebeat/
 
 RUN chmod -R 775 .
 
-COPY app/.env app/public app/assets app/bin app/config app/src app/templates app/package.json  app/composer.json  ./
+COPY app/.env  app/public app/assets app/bin app/config app/src app/templates app/package.json  app/composer.json  ./
     
 RUN composer update && composer install
 RUN npm update && npm install --force && npm run build
